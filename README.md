@@ -33,16 +33,21 @@ To compile the programe, open a terminal in the working directory and enter the 
 
 To remove all of the object files in the working directory, use the command "make CLEAN" in the terminal.
 
-+# chmod 755 ./profile.sh first to run this file via command line
-+# This file will clean, build and run the program and produce a valgrind profiling report
-+# on compleation the valgrind report can be viewed with kcachegrind GUI tool
-+# To install profiling tools:
-+
-+# sudo apt-get update
-+# sudo apt install valgrind
-+# sudo apt install kcachegrind
+chmod 755 ./profile.sh first to run this file via command line
 
-see profile.sh for more info
+This file will clean, build and run the program and produce a valgrind profiling report on compleation.
+
+The valgrind report can be viewed with kcachegrind GUI tool
+
+To install profiling tools:
+
+sudo apt-get update
+
+sudo apt install valgrind
+
+sudo apt install kcachegrind
+
+see profile.sh for more info on the profiling.
 
 # Create Doxygen
 
