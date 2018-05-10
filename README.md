@@ -46,6 +46,10 @@ see profile.sh for more info
 
 #Create Doxygen
 
+First you need to open the Doxyfile and edit OUTPUT_DIRECTORY to the working directory + "/docs" (i.e /home/aaron/Desktop/Wator/docs)
+
+and then INPUT to the working directory (i.e /home/aaron/Desktop/Wator)
+
 If you type 'make DOC' in a terminal in the working directory, the make file will compile the Doxygen code and it will display the Doxygen via Mozilla Firefox.
 
 #Debugging
