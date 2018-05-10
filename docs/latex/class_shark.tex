@@ -1,0 +1,108 @@
+\hypertarget{class_shark}{}\section{Shark Class Reference}
+\label{class_shark}\index{Shark@{Shark}}
+
+
+This file contains of the methods used by the \hyperlink{class_shark}{Shark} objects.  
+
+
+
+
+{\ttfamily \#include $<$Shark.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_shark_aadf418d0bebc47d351a1c5c7e427d93a}{Shark} ()
+\item 
+sf\+::\+Sprite \hyperlink{class_shark_a9b865207240b1b7620bb9b825e0cb06d}{get\+Shark\+Sprite} ()
+\item 
+void \hyperlink{class_shark_a45627e4700fc05d5a9e54283a76348f8}{put\+Sharks\+On\+Map\+At\+Random\+Locations} ()
+\item 
+std\+::vector$<$ char $>$ \hyperlink{class_shark_a4979baf6f9d2351a52fe816d597114d9}{find\+Move\+Location} (int x, int y)
+\item 
+void \hyperlink{class_shark_ae969adad351a5e31853208003e186eb4}{move\+Shark} (std\+::vector$<$ char $>$ possible\+Locations, int x, int y, int time\+Counter)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_shark_a21ce8940cbf1ded5529002c42dd01595}{S\+H\+A\+R\+KS} \mbox{[}\hyperlink{_config_8h_a5ba0b105774bfdc09ce545d73dcdedd3}{G\+R\+I\+D\+\_\+\+R\+O\+WS}\mbox{]}\mbox{[}\hyperlink{_config_8h_a881e2cda79b5951641b07f678f6ef929}{G\+R\+I\+D\+\_\+\+C\+O\+LS}\mbox{]}
+\item 
+int \hyperlink{class_shark_aa03f93cdce80f7dac4c26e4bb73d0547}{S\+H\+A\+R\+K\+S\+M\+O\+VE} \mbox{[}\hyperlink{_config_8h_a5ba0b105774bfdc09ce545d73dcdedd3}{G\+R\+I\+D\+\_\+\+R\+O\+WS}\mbox{]}\mbox{[}\hyperlink{_config_8h_a881e2cda79b5951641b07f678f6ef929}{G\+R\+I\+D\+\_\+\+C\+O\+LS}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains of the methods used by the \hyperlink{class_shark}{Shark} objects. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Shark@{Shark}!Shark@{Shark}}
+\index{Shark@{Shark}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{Shark()}{Shark()}}]{\setlength{\rightskip}{0pt plus 5cm}Shark\+::\+Shark (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_shark_aadf418d0bebc47d351a1c5c7e427d93a}{}\label{class_shark_aadf418d0bebc47d351a1c5c7e427d93a}
+Construstor for \hyperlink{class_shark}{Shark} object Throws an error if the image of the shark does not load 
+
+\subsection{Member Function Documentation}
+\index{Shark@{Shark}!find\+Move\+Location@{find\+Move\+Location}}
+\index{find\+Move\+Location@{find\+Move\+Location}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{find\+Move\+Location(int x, int y)}{findMoveLocation(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ char $>$ Shark\+::find\+Move\+Location (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{class_shark_a4979baf6f9d2351a52fe816d597114d9}{}\label{class_shark_a4979baf6f9d2351a52fe816d597114d9}
+Finds and returns a direction to fish by checking the grid points North, South, East, or West of the current location. If no fish is found in each direction relative to x,y the location is free so we can add that location to an array the holds the available move loctions (N,S,E,W) $<$ Array of shark location
+
+If the shark is North
+
+If the shark is South
+
+If the shark is East
+
+If the shark is West \index{Shark@{Shark}!get\+Shark\+Sprite@{get\+Shark\+Sprite}}
+\index{get\+Shark\+Sprite@{get\+Shark\+Sprite}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{get\+Shark\+Sprite()}{getSharkSprite()}}]{\setlength{\rightskip}{0pt plus 5cm}sf\+::\+Sprite Shark\+::get\+Shark\+Sprite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_shark_a9b865207240b1b7620bb9b825e0cb06d}{}\label{class_shark_a9b865207240b1b7620bb9b825e0cb06d}
+Location/\+Age of Sharks
+
+Gets shark sprite \index{Shark@{Shark}!move\+Shark@{move\+Shark}}
+\index{move\+Shark@{move\+Shark}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{move\+Shark(std\+::vector$<$ char $>$ possible\+Locations, int x, int y, int time\+Counter)}{moveShark(std::vector< char > possibleLocations, int x, int y, int timeCounter)}}]{\setlength{\rightskip}{0pt plus 5cm}void Shark\+::move\+Shark (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ char $>$}]{possible\+Locations, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{time\+Counter}
+\end{DoxyParamCaption}
+)}\hypertarget{class_shark_ae969adad351a5e31853208003e186eb4}{}\label{class_shark_ae969adad351a5e31853208003e186eb4}
+$<$ Remove shark from old location
+
+$<$ Set shark north of old location
+
+$<$ Store sharks positions that have already been moved in this cycle/chronon \index{Shark@{Shark}!put\+Sharks\+On\+Map\+At\+Random\+Locations@{put\+Sharks\+On\+Map\+At\+Random\+Locations}}
+\index{put\+Sharks\+On\+Map\+At\+Random\+Locations@{put\+Sharks\+On\+Map\+At\+Random\+Locations}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{put\+Sharks\+On\+Map\+At\+Random\+Locations()}{putSharksOnMapAtRandomLocations()}}]{\setlength{\rightskip}{0pt plus 5cm}void Shark\+::put\+Sharks\+On\+Map\+At\+Random\+Locations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_shark_a45627e4700fc05d5a9e54283a76348f8}{}\label{class_shark_a45627e4700fc05d5a9e54283a76348f8}
+Puts a shark at a random point on the grid. Works recursively if location is already taken to find another 
+
+\subsection{Member Data Documentation}
+\index{Shark@{Shark}!S\+H\+A\+R\+KS@{S\+H\+A\+R\+KS}}
+\index{S\+H\+A\+R\+KS@{S\+H\+A\+R\+KS}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{S\+H\+A\+R\+KS}{SHARKS}}]{\setlength{\rightskip}{0pt plus 5cm}int Shark\+::\+S\+H\+A\+R\+KS\mbox{[}{\bf G\+R\+I\+D\+\_\+\+R\+O\+WS}\mbox{]}\mbox{[}{\bf G\+R\+I\+D\+\_\+\+C\+O\+LS}\mbox{]}}\hypertarget{class_shark_a21ce8940cbf1ded5529002c42dd01595}{}\label{class_shark_a21ce8940cbf1ded5529002c42dd01595}
+Movement of the Sharks \index{Shark@{Shark}!S\+H\+A\+R\+K\+S\+M\+O\+VE@{S\+H\+A\+R\+K\+S\+M\+O\+VE}}
+\index{S\+H\+A\+R\+K\+S\+M\+O\+VE@{S\+H\+A\+R\+K\+S\+M\+O\+VE}!Shark@{Shark}}
+\subsubsection[{\texorpdfstring{S\+H\+A\+R\+K\+S\+M\+O\+VE}{SHARKSMOVE}}]{\setlength{\rightskip}{0pt plus 5cm}int Shark\+::\+S\+H\+A\+R\+K\+S\+M\+O\+VE\mbox{[}{\bf G\+R\+I\+D\+\_\+\+R\+O\+WS}\mbox{]}\mbox{[}{\bf G\+R\+I\+D\+\_\+\+C\+O\+LS}\mbox{]}}\hypertarget{class_shark_aa03f93cdce80f7dac4c26e4bb73d0547}{}\label{class_shark_aa03f93cdce80f7dac4c26e4bb73d0547}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_shark_8h}{Shark.\+h}\item 
+\hyperlink{_shark_8cpp}{Shark.\+cpp}\end{DoxyCompactItemize}

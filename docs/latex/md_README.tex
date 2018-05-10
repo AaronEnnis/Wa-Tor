@@ -1,0 +1,47 @@
+Software Development Year 4 Project~\newline
+ Concurrent Device Development Module~\newline
+ Aaron Ennis \& Lorcan Bermingham~\newline
+ (C00190504) \& (C00196903)
+
+\section*{Description}
+
+Re-\/create the famous Wa-\/\+Tor program in C++ and then optimised it with thread parallelism
+
+\section*{Setup}
+
+We decided to use the S\+F\+ML graphics library over just Open\+GL alone as it gives more options.
+
+To install S\+F\+ML on U\+B\+U\+N\+TU\+:
+
+sudo apt-\/get install libsfml-\/dev
+
+Download S\+F\+ML, Open the downloaded directory in terminal, enter\+:
+
+sudo cp -\/r include/\+S\+F\+ML /usr/include
+
+sudo cp -\/r /lib/$\ast$ /usr/lib
+
+sudo cp -\/r share/\+S\+F\+ML /usr/share
+
+This will add the libraries to your H\+DD and allow you to compile the Wa-\/\+Tor program.
+
+\section*{Run}
+
+To compile the programe, open a terminal in the working directory and enter the command \char`\"{}make\char`\"{} and then \char`\"{}./main\char`\"{}
+
+To remove all of the object files in the working directory, use the command \char`\"{}make C\+L\+E\+A\+N\char`\"{} in the terminal.
+
++\# chmod 755 ./profile.sh first to run this file via command line +\# This file will clean, build and run the program and produce a valgrind profiling report +\# on compleation the valgrind report can be viewed with kcachegrind G\+UI tool +\# To install profiling tools\+:
+\begin{DoxyItemize}
+\item +\# sudo apt-\/get update +\# sudo apt install valgrind +\# sudo apt install kcachegrind
+\end{DoxyItemize}
+
+see profile.\+sh for more info
+
+\#\+Create Doxygen
+
+If you type \textquotesingle{}make D\+OC\textquotesingle{} in a terminal in the working directory, the make file will compile the Doxygen code and it will display the Doxygen via Mozilla Firefox.
+
+\#\+Debugging
+
+If you type \textquotesingle{}make D\+E\+B\+UG\textquotesingle{} in to the terminal in the working directory you can enter debug mode. 
