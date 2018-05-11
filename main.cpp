@@ -74,7 +74,7 @@ int main()
     }
 
     /*!< Sets the FPS and the Speed (chronons) can be set in Config.h */
-    sf::Time timePerFrame = sf::seconds(1.0f);
+    sf::Time timePerFrame = sf::seconds(chronon);
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
     /*!< Creates the clock object */
@@ -111,6 +111,7 @@ int main()
 			shark.hunger = 0;
                     }
 
+		    /*! In this version when one shark eats, they all eat, and when one shark dies, they all die */
                     if(shark.removeShark() == true){
 		      shark.SHARKS[i][j] = -1;
 		    }
