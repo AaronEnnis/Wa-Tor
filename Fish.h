@@ -22,9 +22,8 @@ public:
     /*!< Movement of the Fish*/
     int FISHMOVE[GRID_ROWS][GRID_COLS];
     sf::Sprite getFishSprite();
-    std::vector< char > findMoveLocation(int x, int y);
-    void moveFish(std::vector< char > possibleLocations, int x, int y, int timeCounter);
-    void removeStarvedFish(int x, int y);
-    void putFishOnMapAtRandomLocations();
+    std::vector< char > moveLocations(int x, int y);
+    void moveFish(std::vector< char > openLocations, int x, int y, int timer);
+    void randomLocation();
 };
 

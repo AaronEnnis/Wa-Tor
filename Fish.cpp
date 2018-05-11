@@ -30,7 +30,7 @@ sf::Sprite Fish::getFishSprite()
 	
 /*! Takes in the position of the current location x,y  of the fish object.
  It then checks North, South, East, and West to see if the grid location is free. */
-std::vector< char > Fish::findMoveLocation(int x, int y)
+std::vector< char > Fish::moveLocations(int x, int y)
 {
 	std::vector< char > arr;
 	/*!< If North */
@@ -54,51 +54,46 @@ std::vector< char > Fish::findMoveLocation(int x, int y)
 }
 
 
-void Fish::moveFish(std::vector< char > possibleLocations, int x, int y, int timeCounter){
+void Fish::moveFish(std::vector< char > openLocations, int x, int y, int timer){
 
-	if(possibleLocations.size()>1){
-		char randomLocationFromPossible = possibleLocations[std::rand() % possibleLocations.size()];
+	if(openLocations.size()>1){
+		char direction = openLocations[std::rand() % openLocations.size()];
 
-		if(randomLocationFromPossible=='N'){
+		if(direction=='N'){
 		  /*!< Remove fish from old location */
 		  FISH[x][y]=-1;
 		  /*!< Set fish north of old location */
-		  FISH[x-1][y]=timeCounter;
+		  FISH[x-1][y]=timer;
 		  /*!< Store fish positions that have already been moved in this cycle/chronon */
 		  FISHMOVE[x-1][y]=1;	
 		}
-		else if(randomLocationFromPossible=='E'){
+		else if(direction=='E'){
 			FISH[x][y]=-1;
-			FISH[x][y+1]=timeCounter; 
+			FISH[x][y+1]=timer; 
 			FISHMOVE[x][y+1]=1;
 		}
-		else if(randomLocationFromPossible=='S'){
+		else if(direction=='S'){
 			FISH[x][y]=-1;
-			FISH[x+1][y]=timeCounter; 
+			FISH[x+1][y]=timer; 
 			FISHMOVE[x+1][y]=1;
 		}
-		else if(randomLocationFromPossible=='W'){
+		else if(direction=='W'){
 			FISH[x][y]=-1;
-			FISH[x][y-1]=timeCounter; 
+			FISH[x][y-1]=timer; 
 			FISHMOVE[x][y-1]=1;
 		}
 	}
 }
-/*! Removes starved fish from the grid */
-void Fish::removeStarvedFish(int x, int y){
-	if(FISH[x][y]>starve){
-		FISH[x][y]=-1;
-	}
-}
+
 /*! Puts a fish at a random point on the grid.
  Works recursively if location is already taken to find another */
-void Fish::putFishOnMapAtRandomLocations(){
+void Fish::randomLocation(){
     int randomRow = std::rand() % GRID_ROWS + 1;
     int randomCol = std::rand() % GRID_COLS + 1;
     if(FISH[randomRow][randomCol]!=1){
         FISH[randomRow][randomCol]=1;
     }else{
-        putFishOnMapAtRandomLocations();
-		cout << "rerand";
+        randomLocation();
+		cout << "re-locate";
     }
 }

@@ -22,7 +22,11 @@ public:
     int SHARKS[GRID_ROWS][GRID_COLS];
     /*!< Movement of the Sharks */
     int SHARKSMOVE[GRID_ROWS][GRID_COLS];
-    void putSharksOnMapAtRandomLocations();
-    std::vector< char > findMoveLocation(int x, int y);
-    void moveShark(std::vector< char > possibleLocations, int x, int y, int timeCounter);
+    /*!< hunger of shark for calculating starvation */
+    int hunger;
+    int sharkStarve;
+    void randomLocation();
+    std::vector< char > moveLocations(int x, int y);
+    void moveShark(std::vector< char > openLocations, int x, int y, int timer);
+    bool removeShark();
 };

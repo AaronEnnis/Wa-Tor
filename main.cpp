@@ -21,7 +21,7 @@ using namespace std;
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode(1360, 560), "Wator Ecosystem Simulator");//1285, 560
+    sf::RenderWindow window(sf::VideoMode(1360, 560), "Wa-Tor Simulator");
 
     /*!< Create a single grid sprite object */
     Grid grid;
@@ -32,6 +32,7 @@ int main()
     /*!< Creates the sprite for the grid */
     sf::Sprite GRID[GRID_ROWS][GRID_COLS];
     /*!< Makes rand() more random, only needs to be called once */
+    
     srand (time (0));  
 
     /*! Fill FISH array wih -1's */
@@ -49,8 +50,8 @@ int main()
     }
 
     /*! Enter fish notated by 1's at random locations into the FISH array */
-    for (int i=0; i<nFish; i++){
-        fish.putFishOnMapAtRandomLocations();
+    for (int i=0; i<numFish; i++){
+        fish.randomLocation();
     }
 
     /*! Fill SHARKS array wih -1's */
@@ -68,8 +69,8 @@ int main()
     }
 
     /*! Enter shark notated by 1's at random locations into the SHARKS array */
-    for (int i=0; i<nSharks; i++){
-        shark.putSharksOnMapAtRandomLocations();
+    for (int i=0; i<numShark; i++){
+        shark.randomLocation();
     }
 
     /*!< Sets the FPS and the Speed (chronons) can be set in Config.h */
@@ -82,13 +83,15 @@ int main()
 
     int timeCounter=0;
 
+    /*! program loop */
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+	  if (event.type == sf::Event::Closed){
                 window.close();
+	  }
         }
 
         /*!< Get the time since last update and restart the clock */
@@ -102,12 +105,15 @@ int main()
             for (int i=0; i<GRID_ROWS; i++){
                 for (int j=0; j<GRID_COLS; j++) {
 
-		    /*! Sharks eat fish if on same location */
+		    /*! Sharks eats fish if on same location */
                     if(shark.SHARKS[i][j]!=-1 && fish.FISH[i][j]!=-1){  
                         fish.FISH[i][j]=-1;
+			shark.hunger = 0;
                     }
 
-                    fish.removeStarvedFish(i, j); 
+                    if(shark.removeShark() == true){
+		      shark.SHARKS[i][j] = -1;
+		    }
 
                     /*! Fill GRID array with grid, shark and fish sprites */
                     if(fish.FISH[i][j]==-1){
@@ -122,15 +128,14 @@ int main()
 
                     /*! Move Fish */
                     if(fish.FISH[i][j]!=-1 && fish.FISHMOVE[i][j]!=1){            
-                        fish.FISH[i][j]=timeCounter;
-                        fish.removeStarvedFish(i, j);  
-                        fish.moveFish(fish.findMoveLocation(i,j), i, j, timeCounter);   
+                        fish.FISH[i][j]=timeCounter;  
+                        fish.moveFish(fish.moveLocations(i,j), i, j, timeCounter);   
                     }
 
                     /*! Move Sharks */
                     if(shark.SHARKS[i][j]!=-1 && shark.SHARKSMOVE[i][j]!=1){            
                         shark.SHARKS[i][j]=timeCounter;
-                        shark.moveShark(shark.findMoveLocation(i,j), i, j, timeCounter);   
+                        shark.moveShark(shark.moveLocations(i,j), i, j, timeCounter);   
                     }
                 } 
             }
@@ -139,8 +144,6 @@ int main()
             /*! Updates the grid after the fish and shark movements are made. */           
             for (int i=0; i<GRID_ROWS; i++){
                 for (int j=0; j<GRID_COLS; j++) {
-
-                    fish.removeStarvedFish(i, j); 
 
                     if(fish.FISH[i][j]==-1){
                         GRID[i][j]=grid.getGridSprite();
@@ -152,13 +155,15 @@ int main()
                         GRID[i][j]=fish.getFishSprite();
                     } 
 
-                    /*!< Set position of sprite to make grid and darw */
+                    /*!< Set position of sprite to make grid */
                     GRID[i][j].setPosition(j * 40,i * 40);
                     window.draw(GRID[i][j]); 
                     fish.FISHMOVE[i][j]=-1;  
                     shark.SHARKSMOVE[i][j]=-1;  
                 }
             }
+
+	    shark.hunger += 50;
 
             timeCounter++;
 

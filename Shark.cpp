@@ -20,6 +20,8 @@ Shark::Shark(){
     
     sharkSprite.setTexture(sharkTexture);
     sharkSprite.setScale(1, 1);
+    hunger = 0;
+    sharkStarve = starve;
 }
 /*! Gets shark sprite */
 sf::Sprite Shark::getSharkSprite()
@@ -29,20 +31,20 @@ sf::Sprite Shark::getSharkSprite()
 
 /*! Puts a shark at a random point on the grid.
   Works recursively if location is already taken to find another */
-void Shark::putSharksOnMapAtRandomLocations(){
+void Shark::randomLocation(){
     int randomRow = std::rand() % GRID_ROWS + 1;
     int randomCol = std::rand() % GRID_COLS + 1;
     if(SHARKS[randomRow][randomCol]!=1){
         SHARKS[randomRow][randomCol]=1;
     }else{
-        putSharksOnMapAtRandomLocations();
+        randomLocation();
     }
 }
 
 /*! Finds and returns a direction to fish by checking the grid points North, South, East, or West of the current location.
  If no fish is found in each direction relative to x,y the location is free so we can
  add that location to an array the holds the available move loctions (N,S,E,W) */
-std::vector< char > Shark::findMoveLocation(int x, int y)
+std::vector< char > Shark::moveLocations(int x, int y)
 {
         /*!< Array of shark location */
 	std::vector< char > arr;
@@ -67,33 +69,42 @@ std::vector< char > Shark::findMoveLocation(int x, int y)
 }
 
 
-void Shark::moveShark(std::vector< char > possibleLocations, int x, int y, int timeCounter){
+void Shark::moveShark(std::vector< char > openLocations, int x, int y, int timer){
 
-	if(possibleLocations.size()>1){
-		char randomLocationFromPossible = possibleLocations[std::rand() % possibleLocations.size()];
+	if(openLocations.size()>1){
+		char direction = openLocations[std::rand() % openLocations.size()];
 
-		if(randomLocationFromPossible=='N'){
+		if(direction=='N'){
 		  /*!< Remove shark from old location */
 		  SHARKS[x][y]=-1;
 		  /*!< Set shark north of old location */
-		  SHARKS[x-1][y]=timeCounter;
+		  SHARKS[x-1][y]=timer;
 		  /*!< Store sharks positions that have already been moved in this cycle/chronon */
 	       	  SHARKSMOVE[x-1][y]=1;	        
 		}
-		else if(randomLocationFromPossible=='E'){
+		else if(direction=='E'){
 		  SHARKS[x][y]=-1;
-		  SHARKS[x][y+1]=timeCounter; 
+		  SHARKS[x][y+1]=timer; 
 		  SHARKSMOVE[x][y+1]=1;
 		}
-		else if(randomLocationFromPossible=='S'){
+		else if(direction=='S'){
 		  SHARKS[x][y]=-1;
-		  SHARKS[x+1][y]=timeCounter; 
+		  SHARKS[x+1][y]=timer; 
 		  SHARKSMOVE[x+1][y]=1;
 		}
-		else if(randomLocationFromPossible=='W'){
+		else if(direction=='W'){
 		  SHARKS[x][y]=-1;
-		  SHARKS[x][y-1]=timeCounter; 
+		  SHARKS[x][y-1]=timer; 
 	       	  SHARKSMOVE[x][y-1]=1;
 		}
+	}
+}
+/*! Removes starved shark from the grid */
+bool Shark::removeShark(){
+	if(hunger > sharkStarve){
+	  return true;
+	}
+	else{
+	  return false;
 	}
 }
